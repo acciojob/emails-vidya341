@@ -70,6 +70,11 @@ public class Email {
         }
         return false;
     }
+    private boolean isPasswordValid(String newPassword) {
+        // Password conditions: At least 8 characters, 1 uppercase, 1 lowercase, 1 digit, and 1 special character.
+        String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        return newPassword.matches(regex);
+    }
 
     public void changePassword(String oldPassword, String newPassword){
         //Change password only if the oldPassword is equal to current password and the new password meets all of the following:
@@ -81,9 +86,9 @@ public class Email {
 
 
         if(password.equals(oldPassword)){
-            if(newPassword.length()>=8 && checkuppercase(newPassword) && checklowercase(newPassword) && checkdigit(newPassword) && checkspecial(newPassword))
+            if(newPassword.length()>=8 && isPasswordValid(newPassword))
             {
-                password = newPassword;
+                this.password = newPassword;
             }
 
         }
