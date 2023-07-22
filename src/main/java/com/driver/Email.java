@@ -79,8 +79,8 @@ public class Email {
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
 
-        String curr_password = getPassword();
-        if(curr_password.equals(oldPassword)){
+
+        if(password.equals(oldPassword)){
             if(newPassword.length()>=8 && checkuppercase(newPassword) && checklowercase(newPassword) && checkdigit(newPassword) && checkspecial(newPassword))
             {
                 password = newPassword;
