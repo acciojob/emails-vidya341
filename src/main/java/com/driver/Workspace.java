@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Workspace extends Gmail{
+    private boolean isTimeOverlap(Meeting meeting1, Meeting meeting2) {
+        // Check if the start time or end time of the meetings overlap.
+        return (meeting1.startTime.isBefore(meeting2.endTime) && meeting1.endTime.isAfter(meeting2.startTime));
+    }
 
     private ArrayList<Meeting> calendar; // Stores all the meetings
 
@@ -20,6 +24,12 @@ public class Workspace extends Gmail{
 
     public void addMeeting(Meeting meeting){
         //add the meeting to calendar
+        for (Meeting existingMeeting : calendar) {
+            if (isTimeOverlap(existingMeeting, meeting)) {
+                throw new IllegalArgumentException("The new meeting overlaps with an existing meeting.");
+            }
+        }
+
         calendar.add(meeting);
 
     }
