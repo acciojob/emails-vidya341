@@ -85,7 +85,7 @@ public class Email {
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
 
 
-        if(password.equals(oldPassword)){
+        if(this.password.equals(oldPassword)){
             if(newPassword.length()>=8 && isPasswordValid(newPassword))
             {
                 this.password = newPassword;
