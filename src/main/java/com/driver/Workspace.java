@@ -23,16 +23,16 @@ public class Workspace extends Gmail{
 
     public void addMeeting(Meeting meeting){
         //add the meeting to calendar
-        boolean add=true;
-        for (Meeting existingMeeting : calendar) {
-            if (isTimeOverlap(existingMeeting, meeting)) {
-                //throw new IllegalArgumentException("The new meeting overlaps with an existing meeting.");
-                add=false;
-                break;
-            }
-        }
-        if(add==true)
-            calendar.add(meeting);
+//        boolean add=true;
+//        for (Meeting existingMeeting : calendar) {
+//            if (isTimeOverlap(existingMeeting, meeting)) {
+//                //throw new IllegalArgumentException("The new meeting overlaps with an existing meeting.");
+//                add=false;
+//                break;
+//            }
+//        }
+//        if(add==true)
+        calendar.add(meeting);
 
     }
 
