@@ -19,6 +19,7 @@ public class Gmail extends Email {
         pq = new ArrayDeque<>();
         map = new HashMap<>();
         trash = new HashSet<>();
+        this.inboxCapacity = inboxCapacity;
 
 
 
@@ -42,7 +43,7 @@ public class Gmail extends Email {
         // 2. The mails are received in non-decreasing order. This means that the date of a new mail is greater than equal to the dates of mails received already.
 
 
-        if(pq.size()>=inboxCapacity)
+        if(pq.size()>=this.inboxCapacity)
         {
             pair totrush = pq.removeFirst();//poll will give me last ele
             map.remove(totrush.message);
@@ -135,6 +136,6 @@ public class Gmail extends Email {
 
     public int getInboxCapacity() {
         // Return the maximum number of mails that can be stored in the inbox
-        return inboxCapacity;
+        return this.inboxCapacity;
     }
 }
