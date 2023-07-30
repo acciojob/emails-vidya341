@@ -25,7 +25,8 @@ public class Workspace extends Gmail{
         //add the meeting to calendar
         for (Meeting existingMeeting : calendar) {
             if (isTimeOverlap(existingMeeting, meeting)) {
-                throw new IllegalArgumentException("The new meeting overlaps with an existing meeting.");
+                //throw new IllegalArgumentException("The new meeting overlaps with an existing meeting.");
+                continue;
             }
         }
 
