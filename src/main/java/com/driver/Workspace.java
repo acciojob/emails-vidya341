@@ -42,18 +42,39 @@ public class Workspace extends Gmail{
         // 2. If you want to attend a meeting, you must join it at its start time and leave at end time.
         // Example: If a meeting ends at 10:00 am, you cannot attend another meeting starting at 10:00 am
 
-        calendar.sort((m1, m2) -> m1.endTime.compareTo(m2.endTime));
+//        calendar.sort((m1, m2) -> m1.endTime.compareTo(m2.endTime));
+//
+//        int noofmeetings = 0;
+//        LocalTime currentTime = LocalTime.MIN;
+//        for(Meeting meet:calendar)
+//        {
+//            if(meet.startTime.compareTo(currentTime)>=0)
+//            {
+//                noofmeetings++;
+//                currentTime = meet.endTime;
+//            }
+//        }
+//        return noofmeetings;
+        if(calendar.size() == 0) return 0;
 
-        int noofmeetings = 0;
-        LocalTime currentTime = LocalTime.MIN;
-        for(Meeting meet:calendar)
-        {
-            if(meet.startTime.compareTo(currentTime)>=0)
-            {
-                noofmeetings++;
-                currentTime = meet.endTime;
+        ArrayList<Meeting> copyCalendar = new ArrayList<>(calendar);
+        Collections.sort(copyCalendar,(a,b)->{
+            return (a.getEndTime().compareTo(b.getEndTime()));
+        });
+
+        int count = 1;
+        LocalTime prevEnd = copyCalendar.get(0).getEndTime();
+        for(int i = 1; i < copyCalendar.size(); i++) {
+
+            Meeting meet = copyCalendar.get(i);
+            LocalTime nextStart = meet.getStartTime();
+
+            if(nextStart.isAfter(prevEnd)) {
+                count++;
+                prevEnd = meet.getEndTime();
             }
+
         }
-        return noofmeetings;
+        return count;
     }
 }
